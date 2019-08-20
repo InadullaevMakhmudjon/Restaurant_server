@@ -1,5 +1,33 @@
+import { sign } from 'jsonwebtoken';
+import { compareSync } from 'bcrypt';
+import models from '../models';
+
+function find(where, attributes, res, next) {
+  models.User.findAll({ where, attributes })
+    .then((users) => {
+      if (users.length) { next(users[0]); } else res.send(404);
+    })
+    .catch((errors) => res.status(501).json(errors));
+}
+
 export default {
+  details(req, res) {
+    find({ id: req.userId }, ['name', 'username', 'createdAt'], res, (user) => {
+      res.status(200).json({ user });
+    });
+  },
   login(req, res) {
-    res.send('Nope');
+    find({ username: req.body.username }, ['id', 'password'], res, (user) => {
+      if (compareSync(req.body.password, user.password)) {
+        sign({ userId: user.id }, process.env.JWT_KEY, {}, (err, token) => {
+          res.status(200).json({ token });
+        });
+      } else {
+        res.send(401);
+      }
+    });
+  },
+  registration(req, res) {
+    res.send('Registration');
   },
 };
