@@ -3,6 +3,8 @@ import fs from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize from 'sequelize';
 
+require('dotenv').config();
+
 const basename = _basename(__filename);
 const config = require('../config/config.js')[process.env.NODE_ENV || 'development'];
 
