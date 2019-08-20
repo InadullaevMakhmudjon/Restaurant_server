@@ -28,6 +28,23 @@ export default {
     });
   },
   registration(req, res) {
-    res.send('Registration');
+    new Promise((resolve, reject) => {
+      models.User.findAll({ where: { username: req.user.username } })
+        .then((users) => {
+          if (users.length) { reject(); } else { resolve(); }
+        })
+        .catch((err) => reject(err));
+    }).then(() => {
+      models.User.create(req.user)
+        .then(() => res.send(200))
+        .catch((err) => res.status(501).json({ err }));
+    })
+      .catch((err) => {
+        if (err) {
+          res.status(501).json({ err });
+        } else {
+          res.send(409);
+        }
+      });
   },
 };
