@@ -1,6 +1,6 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('RestaurantCategories', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('RestaurantMainCategories', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -10,9 +10,9 @@ module.exports = {
     restaurantId: {
       type: Sequelize.INTEGER,
     },
-    categoryId: {
+    mainCategoryId: {
       type: Sequelize.INTEGER,
     },
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('RestaurantCategories'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('RestaurantMainCategories'),
 };

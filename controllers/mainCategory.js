@@ -1,7 +1,7 @@
 import models from '../models';
 
 function find(where, res, next) {
-  models.Category.findAll({ where })
+  models.MainCategory.findAll({ where })
     .then((data) => next(data))
     .catch((err) => res.status(501).json({ err }));
 }
@@ -23,12 +23,12 @@ export default {
     });
   },
   create: (req, res) => execute(
-    models.Category.create(req.category), res,
+    models.MainCategory.create(req.category), res,
   ),
   update: (req, res) => execute(
-    models.Category.update(req.category, { where: { id: req.params.id } }), res,
+    models.MainCategory.update(req.mainCategory, { where: { id: req.params.id } }), res,
   ),
   delete: (req, res) => execute(
-    models.Category.destroy({ where: { id: req.params.id } }), res,
+    models.MainCategory.destroy({ where: { id: req.params.id } }), res,
   ),
 };
