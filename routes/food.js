@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check, validate } from '../util/validations/food';
 import middleware from '../middlewares/auth';
-import food from '../controllers/foods';
+import food from '../controllers/food';
 
 const router = Router();
 
