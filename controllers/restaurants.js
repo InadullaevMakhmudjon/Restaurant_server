@@ -1,8 +1,36 @@
 import models from '../models';
 
 function find(where, res, next) {
-  models.Restaurant.findAll({ where })
-    .then((data) => next(data))
+  models.Restaurant.findAll({
+    where,
+    include: [
+      {
+        model: models.MainCategory,
+        as: 'restaurantCategories',
+      },
+      {
+        model: models.Category,
+        as: 'categories',
+        include: [
+          {
+            model: models.Food,
+            as: 'foods',
+          },
+        ],
+      },
+    ],
+  })
+    .then((data) => {
+      data.forEach((item) => {
+        item.restaurantCategories
+        // eslint-disable-next-line no-param-reassign
+          .forEach((el) => delete el.dataValues.RestaurantMainCategories);
+        item.categories
+          // eslint-disable-next-line no-param-reassign
+          .forEach((el) => delete el.dataValues.RestaurantCategories);
+      });
+      next(data);
+    })
     .catch((err) => res.status(501).json({ err }));
 }
 

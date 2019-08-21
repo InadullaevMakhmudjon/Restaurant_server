@@ -4,6 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     restaurantId: DataTypes.INTEGER,
     mainCategoryId: DataTypes.INTEGER,
   }, {});
-  RestaurantMainCategory.associate = (models) => {};
+  RestaurantMainCategory.associate = () => {};
   return RestaurantMainCategory;
 };

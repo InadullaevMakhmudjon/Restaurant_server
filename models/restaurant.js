@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
   }, {});
   Restaurant.associate = (models) => {
-    Restaurant.belongsToMany(models.MainCategory, { as: 'restaurantCategory', through: 'RestaurantMainCategory', foreignKey: 'restaurantId' });
-    Restaurant.belongsToMany(models.Category, { as: 'categories', through: 'RestaurantCategory', foreignKey: 'restaurantId' });
+    Restaurant.belongsToMany(models.MainCategory, { as: 'restaurantCategories', through: 'RestaurantMainCategories', foreignKey: 'restaurantId' });
+    Restaurant.belongsToMany(models.Category, { as: 'categories', through: 'RestaurantCategories', foreignKey: 'restaurantId' });
   };
   return Restaurant;
 };

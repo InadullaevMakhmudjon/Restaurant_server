@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Category.associate = (models) => {
     Category.hasMany(models.Food, { as: 'foods' });
-    Category.belongsToMany(models.Restaurant, { as: 'restaurants', through: 'RestaurantCategory', foreignKey: 'categoryId' });
+    Category.belongsToMany(models.Restaurant, { as: 'restaurants', through: 'RestaurantCategories', foreignKey: 'categoryId' });
   };
   return Category;
 };
