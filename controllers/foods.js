@@ -1,9 +1,9 @@
 import models from '../models';
 
 function find(where, res, next) {
-  models.Restaurant.findAll({ where })
-    .then((data) => next(data))
-    .catch((err) => res.status(501).json({ err }));
+  models.Food.findAll({ where })
+    .then((food) => next(food))
+    .catch((err) => res.status(501).json(err));
 }
 
 function execute(promise, res) {
@@ -17,18 +17,18 @@ export default {
       res.status(200).json(data);
     });
   },
-  getAll(_, res) {
+  getAll(req, res) {
     find(null, res, (data) => {
       res.status(200).json(data);
     });
   },
   create: (req, res) => execute(
-    models.Restaurant.create(req.restaurant), res,
+    models.Food.create(req.food), res,
   ),
   update: (req, res) => execute(
-    models.Restaurant.update(req.restaurant, { where: { id: req.params.id } }), res,
+    models.Food.update(req.food, { where: { id: req.params.id } }), res,
   ),
   delete: (req, res) => execute(
-    models.Restaurant.destroy({ where: { id: req.params.id } }), res,
+    models.Food.destroy({ where: { id: req.params.id } }), res,
   ),
 };

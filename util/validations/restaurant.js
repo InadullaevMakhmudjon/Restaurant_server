@@ -1,14 +1,16 @@
 import { checkSchema, validationResult } from 'express-validator';
-import { hashSync } from 'bcrypt';
 
 export const check = checkSchema({
   name: {
     isString: true,
   },
-  username: {
+  description: {
     isString: true,
   },
-  password: {
+  title: {
+    isString: true,
+  },
+  info: {
     isString: true,
   },
 });
@@ -18,10 +20,12 @@ export function validate(req, res, next) {
   if (!errors.isEmpty()) {
     res.status(403).json({ errors });
   } else {
-    req.user = {
+    req.restaurant = {
       name: req.body.name,
-      username: req.body.username,
-      password: hashSync(req.body.password, 10),
+      description: req.body.description,
+      title: req.body.title,
+      info: req.body.info,
+      image: '___',
     };
     next();
   }

@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     restaurantId: DataTypes.INTEGER,
   }, {});
   Food.associate = (models) => {
-    Food.belongsTo(models.Restaurant, { as: 'restaurant', foreignKey: 'restaurant' });
-    Food.belongsTo(models.Category, { as: 'category', foreignKey: 'category' });
+    Food.belongsTo(models.Restaurant, { as: 'restaurant' });
+    Food.belongsTo(models.Category, { as: 'category' });
   };
   return Food;
 };
