@@ -12,7 +12,7 @@ const app = express();
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(cors);
+app.use(cors());
 app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
