@@ -5,8 +5,8 @@ import middleware from '../middlewares/auth';
 
 const router = Router();
 
-router.get('/:id', middleware, restaurants.get);
-router.get('/', middleware, restaurants.getAll);
+router.get('/:id', restaurants.get);
+router.get('/', restaurants.getAll);
 router.post('/', middleware, check, validate, restaurants.create);
 router.put('/:id', middleware, check, validate, restaurants.update);
 router.delete('/:id', middleware, restaurants.delete);
