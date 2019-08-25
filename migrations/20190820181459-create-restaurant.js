@@ -19,6 +19,9 @@ module.exports = {
     info: {
       type: Sequelize.STRING,
     },
+    minPrice: {
+      type: Sequelize.DOUBLE,
+    },
     image: {
       type: Sequelize.STRING,
     },

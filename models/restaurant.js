@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     title: DataTypes.STRING,
     info: DataTypes.STRING,
+    minPrice: DataTypes.DOUBLE,
     image: DataTypes.STRING,
   }, {});
   Restaurant.associate = (models) => {

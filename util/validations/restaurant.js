@@ -13,6 +13,9 @@ export const check = checkSchema({
   info: {
     isString: true,
   },
+  minPrice: {
+    isFloat: true,
+  },
 });
 
 export function validate(req, res, next) {
@@ -25,6 +28,7 @@ export function validate(req, res, next) {
       description: req.body.description,
       title: req.body.title,
       info: req.body.info,
+      minPrice: req.body.minPrice,
       image: '___',
     };
     next();

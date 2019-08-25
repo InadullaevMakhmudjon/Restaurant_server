@@ -7,6 +7,7 @@ module.exports = {
       description: 'На сегодняшний день Street77 является одним из ведущих заведений в сфере быстрого питания.',
       title: 'Доставка 39 р на заказ от 500 р',
       info: "bizning lvash eng zo'rlari",
+      minPrice: 5500,
       image: 'https://google.com/images/image/7',
     },
     {
@@ -15,6 +16,7 @@ module.exports = {
       description: 'Fast food Pizza Desert',
       title: 'Доставка 39 р на заказ от 500 р',
       info: "bizning lvash eng zo'rlari",
+      minPrice: 7800,
       image: 'https://google.com/images/image/7',
     },
     {
@@ -23,6 +25,7 @@ module.exports = {
       description: 'Kantucky fried chikens',
       title: 'Доставка 39 р на заказ от 500 р',
       info: "bizning lvash eng zo'rlari",
+      minPrice: 9200,
       image: 'https://google.com/images/image/7',
     },
 

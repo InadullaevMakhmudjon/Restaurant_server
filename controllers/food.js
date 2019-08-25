@@ -18,7 +18,13 @@ export default {
     });
   },
   getAll(req, res) {
-    find(null, res, (data) => {
+    const where = {};
+    if (Object.keys(req.query).length) {
+      Object.keys(req.query).forEach((key) => {
+        where[key] = req.query[key];
+      });
+    }
+    find(where, res, (data) => {
       res.status(200).json(data);
     });
   },
