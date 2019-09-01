@@ -14,5 +14,5 @@ export function validate(req, res, next) {
     categoryId: req.body.categoryId,
     restaurantId: req.body.restaurantId,
   };
-  res.status(200).json({ res: req.food });
+  next();
 }
