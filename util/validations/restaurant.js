@@ -1,36 +1,16 @@
-import { checkSchema, validationResult } from 'express-validator';
-
-export const check = checkSchema({
-  name: {
-    isString: true,
-  },
-  description: {
-    isString: true,
-  },
-  title: {
-    isString: true,
-  },
-  info: {
-    isString: true,
-  },
-  minPrice: {
-    isFloat: true,
-  },
-});
+export const check = ['name', 'description', 'title', 'info', 'minPrice'];
 
 export function validate(req, res, next) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    res.status(403).json({ errors });
-  } else {
-    req.restaurant = {
-      name: req.body.name,
-      description: req.body.description,
-      title: req.body.title,
-      info: req.body.info,
-      minPrice: req.body.minPrice,
-      image: '___',
-    };
-    next();
-  }
+  check.forEach((key) => {
+    if (!req.body[key]) throw new Error(`${key} is not defined`);
+  });
+  req.restaurant = {
+    name: req.body.name,
+    description: req.body.description,
+    title: req.body.title,
+    info: req.body.info,
+    minPrice: req.body.minPrice,
+    image: `${process.env.BASE_URL}/${req.file.path}`,
+  };
+  next();
 }
