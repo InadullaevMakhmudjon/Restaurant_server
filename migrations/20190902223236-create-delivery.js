@@ -1,43 +1,50 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Food', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Deliveries', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    name: {
+    address: {
       type: Sequelize.STRING,
     },
-    description: {
+    clientName: {
       type: Sequelize.STRING,
     },
-    price: {
-      type: Sequelize.DOUBLE,
-    },
-    image: {
+    clientPhone: {
       type: Sequelize.STRING,
     },
-    categoryId: {
+    comment: {
+      type: Sequelize.STRING,
+    },
+    foodId: {
+      type: Sequelize.INTEGER,
+    },
+    typeId: {
       type: Sequelize.INTEGER,
     },
     restaurantId: {
       type: Sequelize.INTEGER,
     },
-    typeId: {
+    amount: {
+      type: Sequelize.FLOAT,
+    },
+    quantity: {
       type: Sequelize.INTEGER,
+    },
+    approved: {
+      type: Sequelize.BOOLEAN,
+    },
+    shipped: {
+      type: Sequelize.BOOLEAN,
     },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
       defaultValue: Sequelize.fn('now'),
     },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.fn('now'),
-    },
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Food'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('Deliveries'),
 };

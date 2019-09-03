@@ -10,7 +10,7 @@ const router = Router();
 router.get('/:id', restaurants.get);
 router.get('/', restaurants.getAll);
 router.post('/', middleware, uploade('image'), validate, restaurants.create, handler);
-router.put('/:id', middleware, uploade('image'), validate, restaurants.update, handler);
+router.post('/:id', middleware, uploade('image'), validate, restaurants.update, handler);
 router.delete('/:id', middleware, restaurants.delete);
 
 export default router;
