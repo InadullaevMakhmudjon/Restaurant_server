@@ -9,6 +9,7 @@ module.exports = {
       image: 'https://google.com',
       categoryId: 11,
       restaurantId: 1,
+      typeId: 1,
     },
     {
       id: 2,
@@ -18,6 +19,7 @@ module.exports = {
       image: 'https://google.com',
       categoryId: 12,
       restaurantId: 1,
+      typeId: 1,
     },
     {
       id: 3,
@@ -27,6 +29,7 @@ module.exports = {
       image: 'https://google.com',
       categoryId: 1,
       restaurantId: 2,
+      typeId: 1,
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ module.exports = {
       image: 'https://google.com',
       categoryId: 2,
       restaurantId: 2,
+      typeId: 1,
     },
   ], {}),
   down: (queryInterface) => queryInterface.bulkDelete('Food', null, {}),

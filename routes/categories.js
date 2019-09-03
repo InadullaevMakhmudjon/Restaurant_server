@@ -8,7 +8,7 @@ const router = Router();
 router.get('/:id', categories.get);
 router.get('/', categories.getAll);
 router.post('/', middleware, check, validate, categories.create);
-router.put('/:id', middleware, check, validate, categories.update);
+router.post('/:id', middleware, check, validate, categories.update);
 router.delete('/:id', middleware, categories.delete);
 
 export default router;
