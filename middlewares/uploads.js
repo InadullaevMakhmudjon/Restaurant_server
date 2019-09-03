@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 });
 
 export default (name) => multer({
-  fileFilter, // allows to write by types
+  fileFilter, // allows to write by formats of the file
   limits, // checks limit is in bounds up to 5mb
   storage, // Stores image to localdisk
 }).single(name);

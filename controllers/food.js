@@ -1,7 +1,23 @@
 import models from '../models';
 
 function find(where, res, next) {
-  models.Food.findAll({ where })
+  models.Food.findAll({
+    where,
+    include: [
+      {
+        model: models.Restaurant,
+        as: 'restaurant',
+      },
+      {
+        model: models.Category,
+        as: 'category',
+      },
+      {
+        model: models.Type,
+        as: 'type',
+      },
+    ],
+  })
     .then((food) => next(food))
     .catch((err) => res.status(501).json(err));
 }
