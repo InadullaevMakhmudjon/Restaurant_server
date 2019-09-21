@@ -13,6 +13,10 @@ module.exports = {
     description: {
       type: Sequelize.STRING,
     },
+    amount: {
+      type: Sequelize.DOUBLE,
+      allowNull: true,
+    },
     price: {
       type: Sequelize.DOUBLE,
     },

@@ -19,17 +19,14 @@ module.exports = {
     comment: {
       type: Sequelize.STRING,
     },
-    foodId: {
-      type: Sequelize.INTEGER,
-    },
-    typeId: {
-      type: Sequelize.INTEGER,
-    },
     restaurantId: {
       type: Sequelize.INTEGER,
     },
-    amount: {
-      type: Sequelize.FLOAT,
+    lat: {
+      type: Sequelize.DOUBLE,
+    },
+    long: {
+      type: Sequelize.DOUBLE,
     },
     quantity: {
       type: Sequelize.INTEGER,
