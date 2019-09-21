@@ -13,20 +13,20 @@ export const check = checkSchema({
   comment: {
     isString: true,
   },
-  foodId: {
-    isInt: true,
-  },
-  typeId: {
-    isInt: true,
-  },
   restaurantId: {
     isInt: true,
   },
-  amount: {
-    isFloat: true,
-  },
   quantity: {
     isInt: true,
+  },
+  lat: {
+    isFloat: true,
+  },
+  long: {
+    isFloat: true,
+  },
+  food: {
+    isArray: true,
   },
 });
 
@@ -40,13 +40,13 @@ export function validate(req, res, next) {
       clientName: req.body.clientName,
       clientPhone: req.body.clientPhone,
       comment: req.body.comment,
-      foodId: req.body.foodId,
-      typeId: req.body.typeId,
       restaurantId: req.body.restaurantId,
-      amount: req.body.amount,
       quantity: req.body.quantity,
       approved: false,
       shipped: false,
+      lat: req.body.lat,
+      long: req.body.long,
+      food: req.body.food,
       createdAt: new Date(),
     };
     next();
