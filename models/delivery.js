@@ -4,18 +4,16 @@ module.exports = (sequelize, DataTypes) => {
     clientName: DataTypes.STRING,
     clientPhone: DataTypes.STRING,
     comment: DataTypes.STRING,
-    foodId: DataTypes.INTEGER,
-    typeId: DataTypes.INTEGER,
     restaurantId: DataTypes.INTEGER,
-    amount: DataTypes.FLOAT,
+    lat: DataTypes.DOUBLE,
+    long: DataTypes.DOUBLE,
     quantity: DataTypes.INTEGER,
     approved: DataTypes.BOOLEAN,
     shipped: DataTypes.BOOLEAN,
     createdAt: DataTypes.DATE,
   }, {});
   Delivery.associate = (models) => {
-    Delivery.belongsTo(models.Food, { as: 'food' });
-    Delivery.belongsTo(models.Type, { as: 'type' });
+    Delivery.belongsToMany(models.Food, { as: 'foods', through: 'DeliveryFood', foreignKey: 'deliveryId' });
     Delivery.belongsTo(models.Restaurant, { as: 'restaurant' });
   };
   return Delivery;

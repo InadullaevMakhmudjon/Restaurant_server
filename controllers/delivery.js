@@ -11,15 +11,22 @@ function find(where, res, next) {
       },
       {
         model: models.Food,
-        as: 'food',
-        attributes: ['id', 'name', 'price', 'image'],
-      },
-      {
-        model: models.Type,
-        as: 'type',
+        as: 'foods',
+        include: [
+          {
+            model: models.Type,
+            as: 'type',
+          },
+        ],
       },
     ],
-  }).then((data) => next(data))
+  }).then((data) => {
+    data.forEach((item) => {
+      // eslint-disable-next-line no-param-reassign
+      item.foods.forEach((el) => delete el.dataValues.DeliveryFood);
+    });
+    next(data);
+  })
     .catch((error) => res.status(500).json({ error }));
 }
 
@@ -47,9 +54,19 @@ export default {
   shipped: (req, res) => execute(
     models.Delivery.update({ shipped: true }, { where: { id: req.params.id } }), res,
   ),
-  create: (req, res) => execute(
-    models.Delivery.create(req.delivery), res,
-  ),
+  create: (req, res) => {
+    models.Delivery.create(req.delivery)
+      .then((delivery) => {
+        const objects = req.delivery.food.map((id) => ({
+          foodId: id,
+          deliveryId: delivery.id,
+        }));
+        models.sequelize.getQueryInterface().bulkInsert('DeliveryFoods', objects, {})
+          .then(() => res.send(200))
+          .catch((error) => res.status(501).json({ error }));
+      })
+      .catch((error) => res.status(501).json({ error }));
+  },
   update: (req, res) => execute(
     models.Delivery.update(req.delivery, { where: { id: req.params.id } }), res,
   ),
