@@ -19,7 +19,7 @@ export default {
   login(req, res) {
     find({ username: req.body.username }, ['id', 'password'], res, (user) => {
       if (compareSync(req.body.password, user.password)) {
-        sign({ userId: user.id }, process.env.JWT_KEY, {}, (err, token) => {
+        sign({ userId: user.id, type: 1 }, process.env.JWT_KEY, {}, (err, token) => {
           res.status(200).json({ token });
         });
       } else {

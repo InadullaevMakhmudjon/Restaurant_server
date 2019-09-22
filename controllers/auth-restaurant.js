@@ -19,7 +19,7 @@ export default {
   login(req, res) {
     find({ username: req.body.username }, res, (restaurant) => {
       if (compareSync(req.body.password, restaurant.password)) {
-        sign({ userId: restaurant.id }, process.env.JWT_KEY, {}, (err, token) => {
+        sign({ userId: restaurant.id, type: 2 }, process.env.JWT_KEY, {}, (err, token) => {
           if (err) res.status(401).json({ error: err });
           res.status(200).json({ token });
         });

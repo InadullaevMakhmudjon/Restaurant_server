@@ -37,7 +37,7 @@ function execute(promise, res) {
 
 export default {
   getAll(req, res) {
-    const where = { restaurantId: req.userId };
+    const where = req.userType === 2 ? { restaurantId: req.userId } : {};
     if (Object.keys(req.query).length) {
       Object.keys(req.query).forEach((key) => {
         where[key] = req.query[key];
