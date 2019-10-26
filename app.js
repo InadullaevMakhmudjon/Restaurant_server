@@ -17,7 +17,7 @@ app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, './client/build')));
 app.use('/images', express.static('images'));
 
 indexRouter(app);
