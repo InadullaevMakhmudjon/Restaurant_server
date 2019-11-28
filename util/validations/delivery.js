@@ -1,4 +1,6 @@
 import { checkSchema, validationResult } from 'express-validator';
+import models from '../../models';
+import exist from '../check';
 
 export const check = checkSchema({
   address: {
@@ -14,9 +16,6 @@ export const check = checkSchema({
     isString: true,
   },
   restaurantId: {
-    isInt: true,
-  },
-  quantity: {
     isInt: true,
   },
   lat: {

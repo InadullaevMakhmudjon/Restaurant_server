@@ -28,9 +28,6 @@ module.exports = {
     long: {
       type: Sequelize.DOUBLE,
     },
-    quantity: {
-      type: Sequelize.INTEGER,
-    },
     approved: {
       type: Sequelize.BOOLEAN,
     },

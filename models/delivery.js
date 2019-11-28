@@ -7,13 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     restaurantId: DataTypes.INTEGER,
     lat: DataTypes.DOUBLE,
     long: DataTypes.DOUBLE,
-    quantity: DataTypes.INTEGER,
     approved: DataTypes.BOOLEAN,
     shipped: DataTypes.BOOLEAN,
     createdAt: DataTypes.DATE,
   }, {});
   Delivery.associate = (models) => {
-    Delivery.belongsToMany(models.Food, { as: 'foods', through: 'DeliveryFood', foreignKey: 'deliveryId' });
+    Delivery.hasMany(models.DeliveryFood, { as: 'foods' });
     Delivery.belongsTo(models.Restaurant, { as: 'restaurant' });
   };
   return Delivery;

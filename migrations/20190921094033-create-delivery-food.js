@@ -10,6 +10,9 @@ module.exports = {
     deliveryId: {
       type: Sequelize.INTEGER,
     },
+    quantity: {
+      type: Sequelize.DOUBLE,
+    },
     foodId: {
       type: Sequelize.INTEGER,
     },

@@ -10,20 +10,22 @@ function find(where, res, next) {
         attributes: ['id', 'name', 'image'],
       },
       {
-        model: models.Food,
+        model: models.DeliveryFood,
         as: 'foods',
         include: [
           {
-            model: models.Type,
-            as: 'type',
+            model: models.Food,
+            as: 'food',
           },
         ],
       },
     ],
   }).then((data) => {
     data.forEach((item) => {
-      // eslint-disable-next-line no-param-reassign
-      item.foods.forEach((el) => delete el.dataValues.DeliveryFood);
+      item.foods.forEach((el) => {
+        // eslint-disable-next-line no-param-reassign
+        delete el.dataValues.DeliveryFood;
+      });
     });
     next(data);
   })
@@ -57,8 +59,9 @@ export default {
   create: (req, res) => {
     models.Delivery.create(req.delivery)
       .then((delivery) => {
-        const objects = req.delivery.food.map((id) => ({
-          foodId: id,
+        const objects = req.delivery.food.map(({ foodId, quantity }) => ({
+          quantity,
+          foodId,
           deliveryId: delivery.id,
         }));
         models.sequelize.getQueryInterface().bulkInsert('DeliveryFoods', objects, {})
