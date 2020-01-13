@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import express, { json, urlencoded } from 'express';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -25,6 +25,10 @@ indexRouter(app);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(resolve('index.html'));
 });
 
 // error handler

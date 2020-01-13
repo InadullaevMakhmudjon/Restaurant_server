@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www --exec babel-node --presets babel-preset-env",
-    "update": "sequelize db:drop && sequelize db:create --charset utf8mb4 && sequelize db:migrate --debug && sequelize db:seed:all --debug && rm -rf images && mkdir images"
+    "update": "sequelize db:drop && sequelize db:create --charset utf8mb4 && sequelize db:migrate --debug && sequelize db:seed:all --debug"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
