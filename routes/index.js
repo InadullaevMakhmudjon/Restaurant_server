@@ -9,10 +9,13 @@ import delivery from './delivery';
 import types from './types';
 
 export default (app) => {
+  app.io.on('connection', (socket) => {
+    console.log('Successfully connected new user');
+    app.use('/api/restaurants', restaurants(socket));
+  });
   app.use('/api/', home);
   app.use('/api/auth/admin', authUser);
   app.use('/api/auth/restaurant', authRestaurant);
-  app.use('/api/restaurants', restaurants);
   app.use('/api/food', food);
   app.use('/api/categories', categories);
   app.use('/api/mainCategories', mainCategories);

@@ -1,4 +1,4 @@
-import createError from 'http-errors';
+import socket from 'socket.io';
 import express, { json, urlencoded } from 'express';
 import { join, resolve } from 'path';
 import cors from 'cors';
@@ -7,7 +7,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 
 const app = express();
-
+app.io = socket();
 // view engine setup
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
