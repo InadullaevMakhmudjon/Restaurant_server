@@ -23,11 +23,7 @@ app.use('/images', express.static('images'));
 indexRouter(app);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
-
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(`${resolve(__dirname)}/client/build/index.html`);
 });
 
