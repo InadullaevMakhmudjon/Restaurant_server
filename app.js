@@ -27,8 +27,8 @@ app.use((req, res, next) => {
   next(createError(404));
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(resolve('index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(`${resolve(__dirname)}/client/build/index.html`);
 });
 
 // error handler
