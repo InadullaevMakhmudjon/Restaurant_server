@@ -1,5 +1,7 @@
 import { createServer } from 'http';
+import { address } from 'ip';
 import app from '../app';
+
 require('dotenv').config();
 
 const debug = require('debug')('restaurant:server');
@@ -69,7 +71,8 @@ function onListening() {
     ? `pipe ${addr}`
     : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
-  console.log(`Listening on ${port}`);
+  console.log(`Local:    localhost:${port}`);
+  console.log(`Neetwork: ${address()}:${port}`);
 }
 
 server.listen(port);
