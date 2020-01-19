@@ -1,5 +1,5 @@
 import { checkSchema, validationResult } from 'express-validator';
-import { hashSync } from 'bcrypt';
+import { hashSync } from 'bcryptjs';
 
 export const check = checkSchema({
   name: {
