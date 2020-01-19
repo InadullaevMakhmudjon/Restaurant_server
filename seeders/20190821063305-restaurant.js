@@ -1,4 +1,4 @@
-const { hashSync } = require('bcrypt');
+const { hashSync } = require('bcryptjs');
 
 module.exports = {
   up: (queryInterface) => queryInterface.bulkInsert('Restaurants', [
